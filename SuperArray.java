@@ -22,13 +22,9 @@ public class SuperArray {
     return false;
   }
 
-//download driver files
-//can't add null
-//resize = *2 + 1
-
-
+// might be ==
   public boolean add(String str) {
-    if (size == data.length) {
+    if (size >= data.length) {
       resize();
     }
     data[size] = str;
@@ -39,17 +35,28 @@ public class SuperArray {
   public String toString() {
     String a =  "[";
     String b = "";
+    if (data.length > 0) {
     for (int x = 0; x < data.length; x++) {
+      if (data[x] != null) {
       b = b + data[x] + ",";
+    }
+    }
+      if (b != "") {
+        return a + b.substring(0,b.length()-1) + "]";
+      }
+    }
+    return "[]";
+  }
+
+  public String toStringDebug() {
+    String a = "[";
+    String b = "";
+    for (int x = 0; x < data.length; x++) {
+        b = b + data[x] + ",";
     }
     return a + b.substring(0,b.length()-1) + "]";
   }
 
-  public String toStringDebug() {
-    return "" + data;
-  }
-
-  //wtf is THIS DEbUG?
 
   public String get(int index) {
     if (index < 0 || index >= size()) {
@@ -73,6 +80,5 @@ public class SuperArray {
     }
     data = newA;
   }
-
 
 }
