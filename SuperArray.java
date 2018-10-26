@@ -176,11 +176,27 @@ public class SuperArray {
 
 
 //broken
+//removes first occ of del from list
+//ret true if present
+//if not in list ret false
+//after rem shift everything left
     public boolean remove(String del) {
-      str ret = 0;
-      if (remove(del) != null) {
-        ret = this.indexOf(del);
-        return true;
+      String[] newA = new String[data.length-1];
+      int check = 0;
+      if (contains(del) == true) {
+        for (int x = 0; x < data.length-1; x++) {
+          if (data[x].equals(del)) {
+            check = 1;
+          } else if (check == 0){
+            newA[x] = data[x];
+          } else if (check == 1) {
+            newA[x] = data[x+1];
+          }
+        }
+      data = newA;
+      return true;
       }
+      return false;
     }
+
   }
