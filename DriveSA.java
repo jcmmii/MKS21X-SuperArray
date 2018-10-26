@@ -28,12 +28,14 @@ public class DriveSA{
 		System.out.println();
 
 		//tests the resize method
-		for (int x = 0; x < 11; x++) {
-			A.add("S");
+		System.out.println("A is looped 5 times adding J");
+		for (int x = 0; x < 5; x++) {
+			A.add("J");
 		}
 		System.out.println("Current Array: " + A);
 		System.out.println("Size of array: " + A.size());
 		System.out.println("Length of array w/ nulls: " + A.checkit());
+		System.out.println();
 
 		//tests add(int,string) method
 		System.out.println("Current Array:" + A);
@@ -41,6 +43,18 @@ public class DriveSA{
 		System.out.println("After adding IMHERE at index 1:" + A);
 		A.add(0,"bop");
 		System.out.println("After adding bop at index 0: " + A);
+		System.out.println();
+
+		//tests remove(int) method
+		System.out.println("Current Array: " + A);
+		System.out.println("Removing 2 Js");
+		A.remove(5);
+		A.remove(5);
+		System.out.println(A);
+		System.out.println("Remove letsgo: ");
+		A.remove(1);
+		System.out.println(A);
+
 
   }
 }
