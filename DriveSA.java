@@ -54,7 +54,11 @@ public class DriveSA{
 		System.out.println("Remove letsgo: ");
 		A.remove(1);
 		System.out.println(A);
+		System.out.println();
 
+		//tests remove(String)
+ 		System.out.println("Remove IMHERE " + A.remove("IMHERE"));
+		System.out.println(A);
 
   }
 }
