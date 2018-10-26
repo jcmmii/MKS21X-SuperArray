@@ -104,6 +104,8 @@ public class SuperArray {
         }
         place++;
       }
+    } else {
+      return -1;
     }
     return place;
   }
@@ -118,6 +120,8 @@ public class SuperArray {
         }
         place++;
       }
+    } else {
+      return -1;
     }
     return lastind;
   }
@@ -155,14 +159,14 @@ public class SuperArray {
       return null;
     } else {
        ret = data[index];
-       for (int x = 0; x < data.length; x++) {
+       for (int x = 0; x < data.length-1; x++) {
          if (x != index && check == 0) {
           newA[x] = data[x];
         } else {
           check = 1;
         }
         if (check == 1) {
-          newA[x-1] = data[x];
+          newA[x] = data[x+1];
         }
       }
     }
@@ -171,4 +175,12 @@ public class SuperArray {
     }
 
 
+//broken
+    public boolean remove(String del) {
+      str ret = 0;
+      if (remove(del) != null) {
+        ret = this.indexOf(del);
+        return true;
+      }
+    }
   }
