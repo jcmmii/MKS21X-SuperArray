@@ -11,6 +11,7 @@ public class SuperArray {
     size = 0;
   }
 
+  //returns the data length in checking if resize() works
   public int checkit() {
     return data.length;
   }
@@ -120,6 +121,7 @@ public class SuperArray {
     }
     return lastind;
   }
+
 //broke
   public void add(int index, String val) {
     String[] newA = new String[data.length+1];
@@ -134,7 +136,7 @@ public class SuperArray {
           check = 1;
         }
         if (check == 2) {
-          newA[x+1] = data[x];
+          newA[x] = data[x-1];
         }
         if (check == 1) {
           newA[x] = val;
