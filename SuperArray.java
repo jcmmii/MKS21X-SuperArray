@@ -11,6 +11,10 @@ public class SuperArray {
     size = 0;
   }
 
+  public int checkit() {
+    return data.length;
+  }
+
   public int size() {
     return size;
   }
@@ -81,4 +85,88 @@ public class SuperArray {
     data = newA;
   }
 
-}
+  public boolean contains(String target) {
+    for (int x = 0; x < data.length; x++) {
+      if (data[x].equals(target)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public int indexOf(String target) {
+    int place = 0;
+    if (contains(target)) {
+      for (int x = 0; x < data.length; x++) {
+        if (data[x].equals(target)) {
+          return place;
+        }
+        place++;
+      }
+    }
+    return place;
+  }
+
+  public int lastIndexOf(String target) {
+    int place = 0;
+    int lastind = 0;
+    if (contains(target)) {
+      for (int x = 0; x < data.length; x++) {
+        if (data[x].equals(target)) {
+          lastind = place;
+        }
+        place++;
+      }
+    }
+    return lastind;
+  }
+//broke
+  public void add(int index, String val) {
+    String[] newA = new String[data.length+1];
+    int check = 0;
+    if (index < 0 || index >= size()) {
+      System.out.println("Error: Index out of range");
+    } else {
+      for (int x = 0; x < data.length+1; x++) {
+        if (x != index && check == 0){
+          newA[x] = data[x];
+        } else if (check != 2) {
+          check = 1;
+        }
+        if (check == 2) {
+          newA[x+1] = data[x];
+        }
+        if (check == 1) {
+          newA[x] = val;
+          check = 2;
+        }
+      }
+    }
+    data = newA;
+  }
+
+  public String remove(int index) {
+    String[] newA = new String[data.length-1];
+    String ret = "";
+    int check = 0;
+    if (index < 0 || index >= size()) {
+      return null;
+    } else {
+       ret = data[index];
+       for (int x = 0; x < data.length; x++) {
+         if (x != index && check == 0) {
+          newA[x] = data[x];
+        } else {
+          check = 1;
+        }
+        if (check == 1) {
+          newA[x-1] = data[x];
+        }
+      }
+    }
+    data = newA;
+    return ret;
+    }
+
+
+  }
