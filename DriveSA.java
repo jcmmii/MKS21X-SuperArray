@@ -27,7 +27,14 @@ public class DriveSA{
 		System.out.println("Current Array: " + A);
 		System.out.println();
 
-		
+		//tests the resize method
+		for (int x = 0; x < 11; x++) {
+			A.add("S");
+		}
+		System.out.println("CurrentArray: " + A);
+		System.out.println("Size of array: " + A.size());
+		System.out.println(A.checkit());
+
   }
 }
 //for loop to make sure add(int, String)'s  int is in teh length
