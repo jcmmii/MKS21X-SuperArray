@@ -31,9 +31,16 @@ public class DriveSA{
 		for (int x = 0; x < 11; x++) {
 			A.add("S");
 		}
-		System.out.println("CurrentArray: " + A);
+		System.out.println("Current Array: " + A);
 		System.out.println("Size of array: " + A.size());
-		System.out.println(A.checkit());
+		System.out.println("Length of array w/ nulls: " + A.checkit());
+
+		//tests add(int,string) method
+		System.out.println("Current Array:" + A);
+		A.add(1,"IMHERE");
+		System.out.println("After adding IMHERE at index 1:" + A);
+		A.add(0,"bop");
+		System.out.println("After adding bop at index 0: " + A);
 
   }
 }
