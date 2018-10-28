@@ -1,14 +1,16 @@
 public class SuperArray {
-  private String[] data = new String[10];
+  private String[] data;
   private int size;
 
   public SuperArray() {
-    String[] data = new String[10];
+    String[] j = new String[10];
+    data = j;
     clear();
   }
 
   public SuperArray(int startingCapacity) {
-    String[] data = new String[startingCapacity];
+    String[] j = new String[startingCapacity];
+    data = j; 
     clear();
   }
 
