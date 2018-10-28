@@ -65,5 +65,11 @@ public class DriveSA{
 		System.out.println("Size of array: " + A.size());
 
 		System.out.println("Final array with nulls: " + A.toStringDebug());
+
+		System.out.println("\n -------------------- \n");
+		System.out.println("Creating new array, length 7");
+		SuperArray B = new SuperArray(7);
+		System.out.println("The array: " + B.toStringDebug());
+
   }
 }
