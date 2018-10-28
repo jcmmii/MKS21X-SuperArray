@@ -27,7 +27,6 @@ public class SuperArray {
     return false;
   }
 
-// might be ==
   public boolean add(String str) {
     if (size >= data.length) {
       resize();
@@ -41,11 +40,11 @@ public class SuperArray {
     String a =  "[";
     String b = "";
     if (data.length > 0) {
-    for (int x = 0; x < data.length; x++) {
-      if (data[x] != null) {
-      b = b + data[x] + ",";
-    }
-    }
+      for (int x = 0; x < data.length; x++) {
+        if (data[x] != null) {
+          b = b + data[x] + ",";
+        }
+      }
       if (b != "") {
         return a + b.substring(0,b.length()-1) + "]";
       }
@@ -126,7 +125,6 @@ public class SuperArray {
     return lastind;
   }
 
-//broke
   public void add(int index, String val) {
     String[] newA = new String[data.length+1];
     int check = 0;
@@ -144,6 +142,7 @@ public class SuperArray {
         }
         if (check == 1) {
           newA[x] = val;
+          size = size + 1;
           check = 2;
         }
       }
@@ -162,10 +161,14 @@ public class SuperArray {
        for (int x = 0; x < data.length-1; x++) {
          if (x != index && check == 0) {
           newA[x] = data[x];
-        } else {
+        } else if (check != 2){
           check = 1;
         }
         if (check == 1) {
+          size = size - 1;
+          check = 2;
+        }
+        if (check == 2) {
           newA[x] = data[x+1];
         }
       }
@@ -174,22 +177,24 @@ public class SuperArray {
     return ret;
     }
 
-
-//broken
-//removes first occ of del from list
-//ret true if present
-//if not in list ret false
-//after rem shift everything left
-    public boolean remove(String del) {
+    public boolean remove(String target) {
       String[] newA = new String[data.length-1];
       int check = 0;
-      if (contains(del) == true) {
+      int placehold = 0;
+      if (contains(target) == true) {
         for (int x = 0; x < data.length-1; x++) {
-          if (data[x].equals(del)) {
+          if (data[x] != null && data[x].equals(target)) {
             check = 1;
-          } else if (check == 0){
+            placehold = 1;
+          }
+          if (placehold == 1) {
+            placehold = 2;
+            size = size - 1;
+          }
+          if (check == 0){
             newA[x] = data[x];
-          } else if (check == 1) {
+          }
+          if (check == 1) {
             newA[x] = data[x+1];
           }
         }
