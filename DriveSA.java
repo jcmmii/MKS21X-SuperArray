@@ -1,11 +1,11 @@
 public class DriveSA{
 	public static void main(String[] args) {
 
-    SuperArray A = new SuperArray();
-
 		//Sets a new array with size 0, and should be empty
 		System.out.println("Creating new array:");
-		System.out.println("The Array: " + A);
+		SuperArray A = new SuperArray();
+		System.out.println("The Array (with nulls): " + A.toStringDebug());
+		System.out.println("The Array (no nulls): " + A);
 		System.out.println("Size of array: " + A.size());
 		System.out.println("Array empty? " +  A.isEmpty());
 		System.out.println();
@@ -32,7 +32,7 @@ public class DriveSA{
 		for (int x = 0; x < 5; x++) {
 			A.add("J");
 		}
-		System.out.println("Current Array: " + A);
+		System.out.println("Current Array (with nulls): " + A.toStringDebug());
 		System.out.println("Size of array: " + A.size());
 		System.out.println("Length of array w/ nulls: " + A.checkit());
 		System.out.println();
@@ -46,21 +46,24 @@ public class DriveSA{
 		System.out.println();
 
 		//tests remove(int) method
-		System.out.println("Current Array: " + A);
+		System.out.println("Current Array (with nulls): " + A.toStringDebug());
+		System.out.println("Size of array: " + A.size());
 		System.out.println("Removing 2 Js");
 		A.remove(5);
 		A.remove(5);
 		System.out.println(A);
+		System.out.println("Size of array: " + A.size());
 		System.out.println("Remove letsgo: ");
 		A.remove(1);
 		System.out.println(A);
+		System.out.println("Size of array: " + A.size());
 		System.out.println();
 
 		//tests remove(String)
- 		System.out.println("Remove IMHERE " + A.remove("IMHERE"));
+ 		System.out.println("Remove IMHERE? " + A.remove("IMHERE"));
 		System.out.println(A);
+		System.out.println("Size of array: " + A.size());
 
+		System.out.println("Final array with nulls: " + A.toStringDebug());
   }
 }
-//for loop to make sure add(int, String)'s  int is in teh length
-// of the array
