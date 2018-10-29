@@ -75,14 +75,14 @@ public class SuperArray {
 
   public String get(int index) {
     if (index < 0 || index >= size()) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException("Index invalid");
     }
     return data[index];
   }
 
   public String set(int index, String replace) {
     if (index < 0 || index >= size()) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException("Index invalid");
     }
     data[index] = replace;
     return data[index];
@@ -140,7 +140,7 @@ public class SuperArray {
     String[] newA = new String[data.length+1];
     int check = 0;
     if (index < 0 || index >= size()) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException("Index invalid");
     } else {
       for (int x = 0; x < data.length+1; x++) {
         if (x != index && check == 0){
@@ -166,7 +166,7 @@ public class SuperArray {
     String ret = "";
     int check = 0;
     if (index < 0 || index >= size()) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException("Index invalid");
     } else {
        ret = data[index];
        for (int x = 0; x < data.length-1; x++) {
