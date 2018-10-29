@@ -39,8 +39,8 @@ public class DriveSA{
 
 		//tests add(int,string) method
 		System.out.println("Current Array:" + A);
-		A.add(1,"IMHERE");
-		System.out.println("After adding IMHERE at index 1:" + A);
+		A.add(1,"book");
+		System.out.println("After adding book at index 1:" + A);
 		A.add(0,"bop");
 		System.out.println("After adding bop at index 0: " + A);
 		System.out.println();
@@ -60,16 +60,56 @@ public class DriveSA{
 		System.out.println();
 
 		//tests remove(String)
- 		System.out.println("Remove IMHERE? " + A.remove("IMHERE"));
+ 		System.out.println("Remove book? " + A.remove("book"));
 		System.out.println(A);
 		System.out.println("Size of array: " + A.size());
 
 		System.out.println("Final array with nulls: " + A.toStringDebug());
 
-		System.out.println("\n -------------------- \n");
+		System.out.println("\n----------------------\n");
 		System.out.println("Creating new array, length 7");
 		SuperArray B = new SuperArray(7);
 		System.out.println("The array: " + B.toStringDebug());
 
-  }
-}
+		//testing out exceptions
+		//1. initial capacity is negative
+		try {
+			SuperArray C = new SuperArray(-10);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		System.out.println("1. SuperArray(index) - Crashed? nah");
+
+		//2. add(int, String), IndexOutOfBoundsException
+		try {
+			B.add(10,"Can'tAddMe");
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		System.out.println("2. add(int index, String word) - Crashed? nah");
+
+		//3. remove(int), IndexOutOfBoundsException
+		try {
+			B.remove(100);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		System.out.println("3. remove(int index) - Crashed? nah");
+
+		//4. get(index), IndexOutOfBoundsException
+		try {
+			B.get(23);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		System.out.println("4. get(int index) - Crashed? nah");
+
+		//5. set(int, String), IndexOutOfBoundsException
+		try {
+			B.set(9, "Nope");
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		System.out.println("5. set(int index, String word) - Crashed? nah");
+		}
+	}
