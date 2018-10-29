@@ -9,9 +9,13 @@ public class SuperArray {
   }
 
   public SuperArray(int startingCapacity) {
-    String[] j = new String[startingCapacity];
-    data = j; 
-    clear();
+    if (startingCapacity < 0) {
+      throw new IllegalArgumentException ("Initial Capacity cannot be negative");
+    } else {
+        String[] j = new String[startingCapacity];
+        data = j;
+        clear();
+      }
   }
 
   public void clear() {
@@ -71,14 +75,14 @@ public class SuperArray {
 
   public String get(int index) {
     if (index < 0 || index >= size()) {
-      return null;
+      throw new IndexOutOfBoundsException();
     }
     return data[index];
   }
 
   public String set(int index, String replace) {
     if (index < 0 || index >= size()) {
-      return null;
+      throw new IndexOutOfBoundsException();
     }
     data[index] = replace;
     return data[index];
@@ -136,7 +140,7 @@ public class SuperArray {
     String[] newA = new String[data.length+1];
     int check = 0;
     if (index < 0 || index >= size()) {
-      System.out.println("Error: Index out of range");
+      throw new IndexOutOfBoundsException();
     } else {
       for (int x = 0; x < data.length+1; x++) {
         if (x != index && check == 0){
@@ -162,7 +166,7 @@ public class SuperArray {
     String ret = "";
     int check = 0;
     if (index < 0 || index >= size()) {
-      return null;
+      throw new IndexOutOfBoundsException();
     } else {
        ret = data[index];
        for (int x = 0; x < data.length-1; x++) {
@@ -210,5 +214,4 @@ public class SuperArray {
       }
       return false;
     }
-
   }
