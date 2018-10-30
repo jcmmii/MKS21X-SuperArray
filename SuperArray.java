@@ -66,10 +66,13 @@ public class SuperArray {
   public String toStringDebug() {
     String a = "[";
     String b = "";
-    for (int x = 0; x < data.length; x++) {
-        b = b + data[x] + ",";
-    }
-    return a + b.substring(0,b.length()-1) + "]";
+    if (data.length > 0) {
+      for (int x = 0; x < data.length; x++) {
+          b = b + data[x] + ",";
+        }
+        return a + b.substring(0,b.length()-1) + "]";
+      }
+    return "[]";
   }
 
 
@@ -98,7 +101,7 @@ public class SuperArray {
 
   public boolean contains(String target) {
     for (int x = 0; x < data.length; x++) {
-      if (data[x].equals(target)) {
+      if (data[x] != null && data[x].equals(target)) {
         return true;
       }
     }
@@ -139,7 +142,7 @@ public class SuperArray {
   public void add(int index, String val) {
     String[] newA = new String[data.length+1];
     int check = 0;
-    if (index < 0 || index >= size()) {
+    if (index < 0 || index > size()) {
       throw new IndexOutOfBoundsException("Index invalid");
     } else {
       for (int x = 0; x < data.length+1; x++) {
