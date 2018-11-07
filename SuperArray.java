@@ -19,6 +19,7 @@ public class SuperArray {
   }
 
   public void clear() {
+    data = new String[0];
     size = 0;
   }
 
@@ -39,7 +40,7 @@ public class SuperArray {
   }
 
   public boolean add(String str) {
-    if (size >= data.length) {
+    if (data.length <= size) {
       resize();
     }
     data[size] = str;
@@ -84,11 +85,12 @@ public class SuperArray {
   }
 
   public String set(int index, String replace) {
+    String oldVal = data[index];
     if (index < 0 || index >= size()) {
       throw new IndexOutOfBoundsException("Index invalid");
     }
     data[index] = replace;
-    return data[index];
+    return oldVal;
   }
 
   private void resize() {
@@ -109,112 +111,64 @@ public class SuperArray {
   }
 
   public int indexOf(String target) {
-    int place = 0;
-    if (contains(target)) {
-      for (int x = 0; x < data.length; x++) {
-        if (data[x].equals(target)) {
-          return place;
-        }
-        place++;
-      }
-    } else {
-      return -1;
+    for(int x = 0; x < size; x++) {
+      if(data[x].equals(target)) return x;
     }
-    return place;
+    return -1;
   }
 
+
   public int lastIndexOf(String target) {
-    int place = 0;
-    int lastind = 0;
-    if (contains(target)) {
-      for (int x = 0; x < data.length; x++) {
-        if (data[x].equals(target)) {
-          lastind = place;
-        }
-        place++;
-      }
-    } else {
-      return -1;
+    for(int x = size - 1; x > 0; x--) {
+      if(data[x].equals(target)) return x;
     }
-    return lastind;
+    return -1;
   }
 
   public void add(int index, String val) {
-    String[] newA = new String[data.length+1];
-    int check = 0;
-    if (index < 0 || index > size()) {
-      throw new IndexOutOfBoundsException("Index invalid");
-    } else {
-      for (int x = 0; x < data.length+1; x++) {
-        if (x != index && check == 0){
-          newA[x] = data[x];
-        } else if (check != 2) {
-          check = 1;
+    if (data.length == size()) resize();
+    if (index < 0 || index > size()) throw new IndexOutOfBoundsException();
+      else{
+        for (int i = size(); i > 0; i--){
+          if (i > index) data[i] = data[i - 1];
         }
-        if (check == 2) {
-          newA[x] = data[x-1];
-        }
-        if (check == 1) {
-          newA[x] = val;
-          size = size + 1;
-          check = 2;
-        }
+        data[index] = val;
+        size++;
       }
     }
-    data = newA;
-  }
 
   public String remove(int index) {
-    String[] newA = new String[data.length-1];
-    String ret = "";
-    int check = 0;
+    if (data.length <= size()) resize();
     if (index < 0 || index >= size()) {
-      throw new IndexOutOfBoundsException("Index invalid");
-    } else {
-       ret = data[index];
-       for (int x = 0; x < data.length-1; x++) {
-         if (x != index && check == 0) {
-          newA[x] = data[x];
-        } else if (check != 2){
-          check = 1;
-        }
-        if (check == 1) {
-          size = size - 1;
-          check = 2;
-        }
-        if (check == 2) {
-          newA[x] = data[x+1];
-        }
-      }
+      throw new IndexOutOfBoundsException();
     }
-    data = newA;
-    return ret;
+    String del = data[index];
+    for (int x = index; x < size(); x++) {
+      data[x] = data[x+1];
     }
+    size = size - 1;
+    return del;
+  }
 
     public boolean remove(String target) {
-      String[] newA = new String[data.length-1];
+      boolean ret = false;
       int check = 0;
-      int placehold = 0;
-      if (contains(target) == true) {
-        for (int x = 0; x < data.length-1; x++) {
-          if (data[x] != null && data[x].equals(target)) {
-            check = 1;
-            placehold = 1;
-          }
-          if (placehold == 1) {
-            placehold = 2;
-            size = size - 1;
-          }
-          if (check == 0){
-            newA[x] = data[x];
-          }
-          if (check == 1) {
-            newA[x] = data[x+1];
-          }
+      String[] a = new String[data.length-1];
+      for (int x = 0; x < size(); x++) {
+        if (ret == true && check == 1){
+         a[x] = data[x+1];
+       }
+        if (data[x].equals(target) && check == 0) {
+          ret = true;
+          a[x] = data[x+1];
+          size = size -1;
+          check = 1;
+        } else if (check == 0){
+          a[x] = data[x];
         }
-      data = newA;
-      return true;
       }
-      return false;
+      data = a;
+      return ret;
     }
+
   }
